@@ -65,6 +65,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Uri uri = Uri.parse("content://com.longder.databasetest.provider/book/" + newId);
+                ContentValues values = new ContentValues();
+                values.put("name", "诛仙2");
+                values.put("author", "萧鼎");
+                values.put("pages", 500);
+                values.put("price", 10);
+                getContentResolver().update(uri, values, null, null);
+            }
+        });
+        Button deleteData = (Button) findViewById(R.id.delete_data);
+        assert deleteData != null;
+        //删除数据
+        deleteData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("content://com.longder.databasetest.provider/book/" + newId);
+                getContentResolver().delete(uri, null, null);
             }
         });
     }
